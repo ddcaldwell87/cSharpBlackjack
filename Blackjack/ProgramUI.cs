@@ -56,16 +56,16 @@ namespace Blackjack
         {
             Console.WriteLine("Your hands value is: " + handValue);
 
-            MenuOptions();
-
-            PlayHand(handValue);
+            MenuOptions(handValue);
         }
 
-        private void MenuOptions()
+        private void MenuOptions(int handValue)
         {
             Console.WriteLine($"Hit?\n" +
                 $"1. Yes\n" +
                 $"2. No");
+
+            PlayHand(handValue);
         }
 
         private void PlayHand(int handValue)
@@ -77,8 +77,40 @@ namespace Blackjack
             {
                 hitHandValue = handValue += random.Next(0, cards.Length);
                 Console.WriteLine("Your new value is: " + hitHandValue);
-                MenuOptions();
+
+                if (hitHandValue > 21)
+                {
+                    GameOver();
+                }
+                else if (hitHandValue == 21)
+                {
+                    Console.WriteLine(@"
+ _     _            _    _            _    
+| |   | |          | |  (_)          | |   
+| |__ | | __ _  ___| | ___  __ _  ___| | __
+| '_ \| |/ _` |/ __| |/ / |/ _` |/ __| |/ /
+| |_) | | (_| | (__|   <| | (_| | (__|   < 
+|_.__/|_|\__,_|\___|_|\_\ |\__,_|\___|_|\_\
+                       _/ |                
+                      |__/                 
+");
+                    Console.Read();
+                }
+                else
+                {
+                    MenuOptions(hitHandValue);
+                }
             }
+            else if (hit == 2)
+            {
+                GameOver();
+            }
+        }
+
+        private void GameOver()
+        {
+            Console.WriteLine("Game Over");
+            Console.Read();
         }
     }
 }
