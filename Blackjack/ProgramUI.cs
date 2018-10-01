@@ -72,7 +72,7 @@ namespace Blackjack
         {
             int hit = int.Parse(Console.ReadLine());
             int hitHandValue = 0;
-            int dealerHand = random.Next(16, 21);
+            int dealerHand = random.Next(17, 24);
 
             if (hit == 1)
             {
@@ -104,17 +104,20 @@ namespace Blackjack
             }
             else if (hit == 2)
             {
-                if (hitHandValue > dealerHand)
+                if (hitHandValue > dealerHand || dealerHand > 21)
                 {
                     Console.WriteLine("You beat the dealer!");
+                    Console.WriteLine("Dealers hand: " + dealerHand);
                 }
                 else if (hitHandValue == dealerHand)
                 {
                     Console.WriteLine("You tied the dealer.");
+                    Console.WriteLine("Dealers hand: " + dealerHand);
                 }
                 else if (hitHandValue < dealerHand)
                 {
                     Console.WriteLine("The dealer beat you.");
+                    Console.WriteLine("Dealers hand: " + dealerHand);
                 }
 
                 GameOver();
