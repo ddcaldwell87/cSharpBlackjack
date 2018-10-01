@@ -44,8 +44,8 @@ namespace Blackjack
 
         private void DrawCards()
         {
-            int card1 = random.Next(0, cards.Length);
-            int card2 = random.Next(0, cards.Length);
+            int card1 = random.Next(1, cards.Length);
+            int card2 = random.Next(1, cards.Length);
 
             int handValue = card1 + card2;
 
